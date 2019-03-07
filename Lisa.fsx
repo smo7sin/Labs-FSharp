@@ -6,9 +6,10 @@ let txt = "5 3
 let stdin = new IO.StringReader(txt)
 
 let specials max (ps, (s, e)) = 
+        let tp = 1 + e - s 
         let ss = s + (s-1)/max
         if ss <= ps then 
-           1 + Convert.ToInt32((e = ps))
+           1 + Convert.ToInt32((e >= (tp-1)* max) && ss < e)
         else
            0
 
@@ -34,7 +35,7 @@ let main () =
     let chapters = match line2 with
                     | Split ' ' sx -> sx |> List.map int
 
-    let result = openChapters chapters k
+    let result = openChapters chapters k |> Seq.toList
     stdout.WriteLine (result |> Seq.sum )
     0
 
