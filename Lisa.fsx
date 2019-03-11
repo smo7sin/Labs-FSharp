@@ -6,19 +6,20 @@ let txt = "10 5
 let stdin = new IO.StringReader(txt)
 let (/<) a b = Math.Ceiling ((float)a / (float)b) |> int
 let (/~) a b = Math.Round ((float)a / (float)b) |> int
+let bint (v:bool) = Convert.ToInt32 (v)
 
 let specials max (ps, (s, e)) = 
         let tp = 1 + e - s 
-        let ss = s + (s-1) /~ max
+        let spc = (s-1) / max
+        let ss = s + spc
         if ss <= ps then 
-           1 + Convert.ToInt32((e >= (tp-1)* max) && ss < e)
+           bint (ss <= (max + spc * max)) + bint((e >= (tp-1)* max) && ss < e)
         else
            0
 
 let openChapters chapters max =
     chapters 
     |> Seq.map ((/<) max)
-    |> Seq.map int
     |> Seq.scan (+) 1
     |> Seq.pairwise
     |> Seq.map (fun (s, e) -> (s, e-1))
