@@ -6,6 +6,6 @@ open HackerRank
 [<EntryPoint>]
 let main args =
     let k = 5
-    let last = (31, (22, 28));
-    stdout.WriteLine (Lisa.specials k last)
+    let chapter = (31, (22, 28))
+    stdout.WriteLine (Lisa.specials k chapter)
     0
