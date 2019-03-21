@@ -6,7 +6,6 @@ module Lisa =
       
    let inline flip func a b = func b a 
    let (/<) a b = Math.Ceiling ((float)a / (float)b) |> int
-   let (/~) a b = Math.Round ((float)a / (float)b) |> int
    let bint (v:bool) = Convert.ToInt32 (v)
 
    let specials max (ps, (s, e)) = 
