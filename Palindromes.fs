@@ -6,3 +6,5 @@ module Palindromes =
         word 
         |> Seq.countBy id
         |> Seq.map snd
+        
+        
