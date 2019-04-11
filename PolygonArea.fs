@@ -13,15 +13,16 @@ let area ps
 
 let (|Split|) (c:char) (txt:string) = txt.Split (c) |> Array.toList
 
-let main () =
-    let count = stdin.ReadLine() |> int
-    let parse = 
-        function Split ' ' [x1; x2] -> Some ({X = x1 |> int; Y = x2 |> int}) 
-                | _ -> None
+let trim (txt:string) = txt.TrimEnd()
 
+let main () =
+    let count = stdin.ReadLine() |> int 
+    let parse = function
+        | Split ' ' [p1; p2] -> Some ({ X=p1 |> int; Y= p2 |> int })
+        | _ -> None
+        
     let points = 
-        Seq.init count (ignore >> stdin.ReadLine)
+        Seq.init count (ignore >> stdin.ReadLine >> trim)
         |> Seq.choose parse
 
-    printfn "%d" (area points)
-    ()
+    do printfn "%d" (area points)
