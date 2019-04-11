@@ -1,10 +1,9 @@
-namespace HackerRank
 
-module Palindromes =
+module Palindromes
 
-    let palindrome word = 
-        word 
-        |> Seq.countBy id
-        |> Seq.map snd
-        
+let palindrome word = 
+    word 
+    |> Seq.countBy id
+    |> Seq.map snd
+    
         
