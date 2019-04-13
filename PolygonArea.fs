@@ -9,9 +9,10 @@ type Point = { X: int; Y: int }
 let crossProduct p1 p2 = (p1.Y * p2.X - p1.X * p2.Y) |> double
 
 let area (ps: Point list) =
-    let last = ps |> List.take 1
-    let pairs = Seq.append ps last |> Seq.pairwise
-    Math.Abs (Seq.sumBy (fun (a, b) -> crossProduct a b) pairs) / 2.0
+    let first = ps |> List.take 1
+    let pairs = Seq.append ps first |> Seq.pairwise
+    let sum = Seq.sumBy ((<||) crossProduct) pairs
+    Math.Abs sum / 2.0
 
 let (|Split|) (c:char) (txt:string) = txt.Split (c) |> Array.toList
 
